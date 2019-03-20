@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "sales",
+  "info": {
+    "name": "sale",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "amount": {
+      "default": "",
+      "type": "decimal"
+    },
+    "available": {
+      "default": false,
+      "type": "boolean"
+    },
+    "realty": {
+      "model": "realty",
+      "via": "sale"
+    }
+  }
+}

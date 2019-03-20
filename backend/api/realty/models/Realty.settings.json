@@ -1,0 +1,41 @@
+{
+  "connection": "default",
+  "collectionName": "realties",
+  "info": {
+    "name": "realty",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "visible": {
+      "default": false,
+      "type": "boolean"
+    },
+    "lease": {
+      "model": "lease",
+      "via": "realty"
+    },
+    "sale": {
+      "model": "sale",
+      "via": "realty"
+    }
+  }
+}
