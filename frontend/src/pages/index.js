@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import RealtyList from "../components/realtyList";
 
 class IndexPage extends React.Component {
   constructor(props){
@@ -17,15 +18,7 @@ class IndexPage extends React.Component {
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
-    <p></p>
-    <ul>
-      {this.props.data.allStrapiRealties.edges.map(re => (
-        <li key={re.node.name}>
-          
-          <p>{re.node.description}</p>
-        </li>
-      ))}
-    </ul>
+    <RealtyList data={this.props.data} />
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
@@ -38,9 +31,18 @@ class IndexPage extends React.Component {
 export default IndexPage
 
 
-export const pageQuery = graphql`  
-  query IndexQuery {
-    allStrapiRealties {
+export const pageQuery = graphql`
+  query realtiesSearch {
+    site {
+        siteMetadata {
+          title
+        }
+      }
+    allStrapiRealties(
+      limit: 1000
+      sort: { fields: [id], order: ASC }
+      filter: { visible: { eq: 1 } } 
+    ) {
         edges {
             node {
                 id
@@ -59,5 +61,5 @@ export const pageQuery = graphql`
             }
         }
     }
-  }
+}
 `
